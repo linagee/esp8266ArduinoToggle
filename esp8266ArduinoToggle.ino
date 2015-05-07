@@ -19,8 +19,16 @@ void handle_root() {
   Serial.println("Toggled state!");
   delay(100);
   
-  if (state == 0) { state = 1; }
-  if (state == 1) { state = 0; }
+  if (state == 0) {
+     state = 1;
+     Serial.println("LED is now on!");
+     return;    
+  }
+  if (state == 1) {
+     state = 0;
+     Serial.println("LED is now off!");
+     return;
+  }
 }
  
 void setup(void)
