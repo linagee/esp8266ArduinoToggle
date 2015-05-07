@@ -16,6 +16,12 @@ void handle_root() {
 
   digitalWrite(led, state);
   String s = "<html>";
+  if (state == 0) {
+    s += "OUTPUT IS OFF<br>";
+  }
+  if (state == 1) {
+    s += "OUTPUT IS ON<br>";
+  }
   s += "<button style='font-size: 2em;' onclick='javascript:location.reload();'>Toggle</button>";
   s += "</html>";
   server.send(200, "text/html", s);
@@ -23,13 +29,15 @@ void handle_root() {
   delay(100);
 
   if (state == 0) {
-     state = 1;
      Serial.println("LED is now off!");
+     
+     state = 1;
      return;    
   }
   if (state == 1) {
-     state = 0;
      Serial.println("LED is now on!");
+
+     state = 0;
      return;
   }
 }
