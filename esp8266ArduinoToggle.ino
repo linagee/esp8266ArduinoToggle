@@ -15,18 +15,20 @@ int state = 0;
 void handle_root() {
 
   digitalWrite(led, state);
-  server.send(200, "text/plain", "hello from esp8266!");
+  String s = "<html>";
+  s += "</html>";
+  server.send(200, "text/html", s);
   Serial.println("Toggled state!");
   delay(100);
   
   if (state == 0) {
      state = 1;
-     Serial.println("LED is now on!");
+     Serial.println("LED is now off!");
      return;    
   }
   if (state == 1) {
      state = 0;
-     Serial.println("LED is now off!");
+     Serial.println("LED is now on!");
      return;
   }
 }
