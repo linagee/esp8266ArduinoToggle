@@ -8,7 +8,7 @@ const char* password = "thorthor";
 
 ESP8266WebServer server(80);
  
-const int led = 13;
+const int led = 4;
 
 int state = 0;
  
@@ -16,10 +16,10 @@ void handle_root() {
 
   digitalWrite(led, state);
   String s = "<html>";
-  if (state == 0) {
+  if (state == 1) {
     s += "OUTPUT IS OFF<br>";
   }
-  if (state == 1) {
+  if (state == 0) {
     s += "OUTPUT IS ON<br>";
   }
   s += "<button style='font-size: 2em;' onclick='javascript:location.reload();'>Toggle</button>";
@@ -28,16 +28,16 @@ void handle_root() {
   Serial.println("Toggled state!");
   delay(100);
 
-  if (state == 0) {
+  if (state == 1) {
      Serial.println("LED is now off!");
      
-     state = 1;
+     state = 0;
      return;    
   }
-  if (state == 1) {
+  if (state == 0) {
      Serial.println("LED is now on!");
 
-     state = 0;
+     state = 1;
      return;
   }
 }
